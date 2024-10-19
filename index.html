@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pet-Shop</title>
+    <!-- daisyUI -->
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@4.12.12/dist/full.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- fontawsome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- googlefont -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      .lato-black {
+        font-family: "Lato", sans-serif;
+        font-weight: 900;
+        font-style: normal;
+      }
+
+      .public-sans {
+        font-family: "Public Sans", sans-serif;
+        font-optical-sizing: auto;
+
+        font-style: normal;
+      }
+    </style>
+  </head>
+  <body class="public-sans bg-[#ffff]">
+    <header class="w-11/12 mx-auto lg:w-9/12 p-2">
+      <nav class="flex lg:justify-between justify-center lg:items-center p-1">
+        <div class="lg:flex lg:space-x-1 flex items-center">
+          <i
+            class="fa-solid fa-paw text-[#0E7A81] text-4xl lg:text-3xl mt-1"
+          ></i>
+          <button id="home" onclick="HomeBTN()" class="lg:text-4xl text-5xl">
+            PeDDy
+          </button>
+        </div>
+        <div
+          class="hidden lg:flex lg:justify-between text-[#131313] lg:space-x-11 lg:mr-28 items-center"
+        >
+          <p>Home</p>
+          <p>Shop</p>
+          <p>Contact</p>
+        </div>
+        <div
+          class="hidden lg:flex lg:icon-container lg:relative lg:text-3xl lg:text-gray-900"
+        >
+          <i class="fa-regular fa-circle-user rounded-2xl"></i>
+        </div>
+      </nav>
+      <section class="mt-5">
+        <div class="w-11/12 lg:w-7/12 mx-auto items-center space-y-1">
+          <h1 class="text-center text-gray-600 lg:text-2xl">
+            Bringing Families Together ❤️‍🔥
+          </h1>
+          <h2 class="lg:text-4xl text-center text-3xl">
+            Your Path to Adoption <br />
+            Starts Here
+          </h2>
+          <p
+            class="text-[11px] text-opacity-90 text-gray-500 text-center lg:text-[15px]"
+          >
+            Adoption is a beautiful way to create a family, and we're here to
+            guide you every step of the way.
+          </p>
+        </div>
+        <div class="flex w-6/12 mx-auto mt-2 lg:w-3/12">
+          <button
+            id="view-btn"
+            class="px-2 text-white text-center items-center mx-auto p-1 bg-[#0E7A81] rounded-xl hover:bg-green-100 hover:text-neutral-950 hover:border-2 hover:border-black"
+          >
+            View More
+          </button>
+        </div>
+        <div class="w-11/12 lg:w-6/12 mx-auto items-center space-y-1">
+          <img class="w-full object-fill" src="images/pet.webp" alt="" />
+        </div>
+        <div class="w-11/12 mx-auto mt-2 lg:w-5/12 text-center">
+          <h1 class="font-extrabold text-2xl lg:text-4xl">
+            Adopt Your Best Friend
+          </h1>
+          <p class="text-gray-400 lg:text-2xl">
+            Your will find an excellence best friend
+          </p>
+        </div>
+      </section>
+    </header>
+
+    <!-- categories section api -->
+
+    <main id="target" class="w-11/12 mx-auto lg:w-9/12 p-2">
+      <div
+        id="categoriesBtn"
+        class="w-11/12 mx-auto grid grid-cols-2 gap-3 p-2 mt-5 lg:flex lg:justify-around"
+      ></div>
+    </main>
+
+    <!-- categories section api ends-->
+
+    <section class="w-11/12 mx-auto lg:w-9/12 p-2">
+      <div class="flex justify-between mt-3 w-11/12 mx-auto p-3">
+        <div><h1 class="font-extrabold lg:text-3xl">Best Deal For You</h1></div>
+        <div>
+          <button
+            id="sortByPriceBtn"
+            class="px-2 text-white text-center items-center mx-auto p-1 bg-[#0E7A81] rounded-md hover:bg-gray-500 lg:text-2xl"
+          >
+            Sort By Price
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- cards -->
+
+    <section id="loader-target" class="w-11/12 mx-auto lg:w-9/12 p-2">
+      <div class="flex justify-center">
+        <span
+          id="spinner"
+          class="loading loading-bars w-16 bg-red-500 mb-28"
+        ></span>
+      </div>
+      <div id="cards-section" class="hidden">
+        <div class="lg:grid lg:grid-cols-5 lg:gap-1 lg:w-full grid grid-cols-2">
+          <!-- cards div -->
+          <div
+            id="cardDiv"
+            class="lg:col-span-4 w-11/12 lg:w-full grid grid-cols-1 gap-2 lg:grid-cols-4 lg:gap-2 mx-auto lg:mx-0"
+          ></div>
+          <!-- side bar  -->
+          <div class="border-2 rounded-xl">
+            <div id="likebtnimg" class="grid grid-cols-2"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- modal div here  -->
+
+    <dialog id="my_modal_1" class="modal">
+      <div
+        id="modaldiv"
+        class="modal-box text-center space-y-2 border-2 border-l-indigo-300"
+      ></div>
+    </dialog>
+    <!-- adopt -->
+    <dialog id="my_modal_2" class="modal">
+      <div id="adopdiv" class="modal-box text-center space-y-5 pb-10">
+        <i class="fa-regular fa-handshake text-6xl p-3 text-red-500"></i>
+        <h1 class="text-3xl font-extrabold p-3">congrats</h1>
+        <p class="text-[20px] font-extrabold p-2 w-full">
+          Adoption Process has Started For Your Pet
+        </p>
+        <span id="counter" class="p-3 text-8xl"
+          ><span class="loading loading-spinner text-error"></span>
+        </span>
+      </div>
+    </dialog>
+
+    <footer>
+      <footer
+        class="footer bg-black p-10 flex-col lg:flex-row lg:justify-around"
+      >
+        <div>
+          <div class="flex items-center justify-center">
+            <img class="p-2" src="images/logo.webp" alt="" />
+            <h1 class="text-2xl font-extrabold text-white">Peddy</h1>
+          </div>
+          <div class="text-white space-y-2">
+            <p>Location: MIrpur</p>
+            <p>Phone: 0179595</p>
+
+            <p>Email: RIfatalamtabs@gmail.com</p>
+            <p>Openings hours: 9.00 AM - 5.00 PM</p>
+          </div>
+          <div class="text-white text-2xl mt-2 flex gap-5">
+            <a class="link link-hover"><i class="fa-brands fa-facebook"></i></a>
+            <a class="link link-hover"
+              ><i class="fa-brands fa-x-twitter"></i
+            ></a>
+            <a class="link link-hover"><i class="fa-brands fa-youtube"></i></a>
+            <a class="link link-hover"
+              ><i class="fa-brands fa-instagram"></i
+            ></a>
+          </div>
+        </div>
+
+        <div>
+          <div class="flex flex-col text-white space-y-3">
+            <h6 class="text-center">Useful Links</h6>
+            <a
+              onclick=" window.location.href = './index.html'"
+              class="link link-hover"
+              >Home</a
+            >
+            <a class="link link-hover">About us</a>
+            <a class="link link-hover">Contact</a>
+            <a class="link link-hover">Animals</a>
+            <a class="link link-hover">Foundation</a>
+          </div>
+        </div>
+        <div class="text-white">
+          <h1>Drop a Message <i></i></h1>
+          <input
+            class="rounded-lg p-2 text-black"
+            type="text"
+            placeholder="Enter your email"
+          /><button class="rounded-2xl px-4 py-2 bg-[#0E7A81]">
+            Subscribe
+          </button>
+        </div>
+      </footer>
+    </footer>
+    <script src="js/utilities.js"></script>
+  </body>
+  <script>
+    const targetToggle = document.getElementById("view-btn");
+    const categoriesScroll = document.getElementById("target");
+
+    targetToggle.addEventListener("click", () => {
+      categoriesScroll.scrollIntoView({ behavior: "smooth" });
+    });
+  </script>
+</html>
